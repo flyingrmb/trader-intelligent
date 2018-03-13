@@ -1,6 +1,7 @@
 package org.actech.smart.trader.sync.entity;
 
 import lombok.Data;
+import org.actech.smart.trader.core.common.NumericUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 
@@ -34,10 +35,10 @@ public class Signature {
         if (release == null || !release.equals(another.release)) return false;
         if (code == null || !code.equals(another.code)) return false;
         if (name == null || !name.equals(another.name)) return false;
-        if (lyr == null || lyr.doubleValue() != another.lyr.doubleValue()) return false;
-        if (ttm == null || ttm.doubleValue() != another.ttm.doubleValue()) return false;
-        if (pb == null || pb.doubleValue() != another.pb.doubleValue()) return false;
-        if (dyr == null || dyr.doubleValue() != another.dyr.doubleValue()) return false;
+        if (!NumericUtils.equals(lyr, another.lyr)) return false;
+        if (!NumericUtils.equals(ttm, another.ttm)) return false;
+        if (!NumericUtils.equals(pb, another.pb)) return false;
+        if (!NumericUtils.equals(dyr, another.dyr)) return false;
 
         return true;
     }

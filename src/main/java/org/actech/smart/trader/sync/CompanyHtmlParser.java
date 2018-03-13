@@ -15,7 +15,7 @@ import java.io.File;
 import java.io.IOException;
 
 
-import static org.actech.smart.trader.core.common.NumericParser.*;
+import static org.actech.smart.trader.core.common.NumericUtils.*;
 
 /**
  * Created by paul on 2018/3/10.

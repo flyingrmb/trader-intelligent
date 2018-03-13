@@ -1,6 +1,5 @@
 package org.actech.smart.trader.sync.resolver;
 
-import org.actech.smart.trader.sync.entity.StockClassification;
 import org.actech.smart.trader.sync.entity.StockFundTrack;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -10,7 +9,7 @@ import org.springframework.stereotype.Component;
 import java.util.Collection;
 import java.util.HashSet;
 
-import static org.actech.smart.trader.core.common.NumericParser.parseDouble;
+import static org.actech.smart.trader.core.common.NumericUtils.parseDouble;
 import static org.actech.smart.trader.sync.entity.Signature.DEF_INDEX;
 
 /**

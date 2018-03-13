@@ -1,7 +1,6 @@
 package org.actech.smart.trader.sync.resolver;
 
 import org.actech.smart.trader.sync.entity.BoardClassification;
-import org.actech.smart.trader.sync.entity.CsiIndustrialClassification;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -13,7 +12,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
-import static org.actech.smart.trader.core.common.NumericParser.parseDouble;
+import static org.actech.smart.trader.core.common.NumericUtils.parseDouble;
 import static org.actech.smart.trader.sync.entity.Signature.DEF_INDEX;
 
 /**

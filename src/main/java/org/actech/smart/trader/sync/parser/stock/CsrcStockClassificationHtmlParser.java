@@ -1,12 +1,9 @@
-package org.actech.smart.trader.sync.parser.csrc;
+package org.actech.smart.trader.sync.parser.stock;
 
 import org.actech.smart.trader.sync.entity.StockClassification;
-import org.actech.smart.trader.sync.parser.def.StockClassificationHtmlParser;
 import org.actech.smart.trader.sync.resolver.CsrcStockHtmlResolver;
-import org.actech.smart.trader.sync.resolver.StockHtmlResolver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
 
 /**
  * Created by paul on 2018/3/12.

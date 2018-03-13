@@ -1,6 +1,5 @@
 package org.actech.smart.trader.sync.repositories;
 
-import org.actech.smart.trader.sync.entity.CatalogClassification;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.NoRepositoryBean;
 

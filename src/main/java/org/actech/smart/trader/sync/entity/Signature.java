@@ -2,14 +2,13 @@ package org.actech.smart.trader.sync.entity;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.index.Indexed;
 
 /**
- * Created by paul on 2018/3/12.
+ * Created by paul on 2018/3/13.
  */
 @Data
-public abstract class CatalogClassification {
+public class Signature {
     public static final Double DEF_INDEX = Double.MAX_VALUE;
 
     @Id
@@ -26,11 +25,22 @@ public abstract class CatalogClassification {
     protected Double pb; // 市净率
     protected Double dyr; // 股息率
 
-    @Transient
-    protected Double index; // 页面录入指标
+    public boolean equals(Object object) {
+        if (object == null) return false;
+        if (!(object instanceof Signature)) return false;
 
-    @Transient
-    protected String stockUrl; // 该字段不保存入数据库
+        Signature another = (Signature)object;
+
+        if (release == null || !release.equals(another.release)) return false;
+        if (code == null || !code.equals(another.code)) return false;
+        if (name == null || !name.equals(another.name)) return false;
+        if (lyr == null || lyr.doubleValue() != another.lyr.doubleValue()) return false;
+        if (ttm == null || ttm.doubleValue() != another.ttm.doubleValue()) return false;
+        if (pb == null || pb.doubleValue() != another.pb.doubleValue()) return false;
+        if (dyr == null || dyr.doubleValue() != another.dyr.doubleValue()) return false;
+
+        return true;
+    }
 
     public void setLyr(Double value) {
         if (value == DEF_INDEX) value = 1.0;
@@ -46,6 +56,4 @@ public abstract class CatalogClassification {
         if (value == DEF_INDEX) value = 1.0;
         this.pb = value;
     }
-
-    public abstract boolean isLevelOne();
 }

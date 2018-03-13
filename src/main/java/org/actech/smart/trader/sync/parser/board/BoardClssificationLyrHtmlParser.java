@@ -1,6 +1,7 @@
 package org.actech.smart.trader.sync.parser.board;
 
 import org.actech.smart.trader.sync.entity.BoardClassification;
+import org.springframework.beans.EntityUtils;
 import org.springframework.stereotype.Component;
 
 /**
@@ -9,19 +10,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class BoardClssificationLyrHtmlParser extends BoardClassificationHtmlParser {
     @Override
-    protected BoardClassification merge(BoardClassification newObj, BoardClassification oldObj) {
-        if (isEqual(newObj, oldObj)) return null;
-        newObj = merge0(newObj, oldObj);
-
-        newObj.setLyr(newObj.getIndex());
-        return newObj;
-    }
-
-    @Override
-    protected boolean isEqual(BoardClassification newObj, BoardClassification oldObj) {
-        boolean equal = super.isEqual(newObj, oldObj);
-        if (!equal) return false;
-
-        return newObj.getIndex() == oldObj.getLyr();
+    protected BoardClassification setIndex(BoardClassification classification) {
+        classification.setLyr(classification.getIndex());
+        return classification;
     }
 }

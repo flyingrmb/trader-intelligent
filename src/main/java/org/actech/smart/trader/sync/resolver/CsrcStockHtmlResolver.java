@@ -14,7 +14,7 @@ import java.util.HashSet;
  * Created by paul on 2018/3/12.
  */
 @Component
-public class CsrcStockHtmlResolver extends StockHtmlResolver {
+public class CsrcStockHtmlResolver extends StockHtmlResolver<StockClassification> {
     @Override
     public Collection<StockClassification> resolve(Document document) {
         Collection<StockClassification> result = new HashSet<StockClassification>();

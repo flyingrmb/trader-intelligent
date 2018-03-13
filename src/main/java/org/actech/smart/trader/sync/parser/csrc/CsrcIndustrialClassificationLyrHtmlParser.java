@@ -1,6 +1,9 @@
 package org.actech.smart.trader.sync.parser.csrc;
 
 import org.actech.smart.trader.sync.entity.CsrcIndustrialClassification;
+import org.actech.smart.trader.sync.parser.stock.StockTrackHtmlParser;
+import org.springframework.beans.EntityUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -8,20 +11,14 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class CsrcIndustrialClassificationLyrHtmlParser extends CsrcIndustrialClassificationHtmlParser {
-    @Override
-    protected CsrcIndustrialClassification merge(CsrcIndustrialClassification newObj, CsrcIndustrialClassification oldObj) {
-        if (isEqual(newObj, oldObj)) return null;
-        newObj = merge0(newObj, oldObj);
-
-        newObj.setLyr(newObj.getIndex());
-        return newObj;
+    @Autowired
+    public void setStockTrackParser(StockTrackHtmlParser stockTrackParser) {
+        this.stockTrackParser = stockTrackParser;
     }
 
     @Override
-    protected boolean isEqual(CsrcIndustrialClassification newObj, CsrcIndustrialClassification oldObj) {
-        boolean equal = super.isEqual(newObj, oldObj);
-        if (!equal) return false;
-
-        return newObj.getIndex() == oldObj.getLyr();
+    protected CsrcIndustrialClassification setIndex(CsrcIndustrialClassification classification) {
+        classification.setLyr(classification.getIndex());
+        return classification;
     }
 }

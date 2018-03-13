@@ -1,6 +1,6 @@
 package org.actech.smart.trader.sync.resolver;
 
-import org.actech.smart.trader.sync.entity.CatalogClassification;
+import org.actech.smart.trader.sync.entity.Signature;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -8,7 +8,7 @@ import org.jsoup.select.Elements;
 /**
  * Created by paul on 2018/3/12.
  */
-public abstract class CatalogHtmlResolver<T extends CatalogClassification> implements HtmlResolver {
+public abstract class CatalogHtmlResolver<T extends Signature> implements HtmlResolver {
     @Override
     public Elements navigatorToContents(Document document) {
         Elements elements = document.getElementsByClass("companyBox");

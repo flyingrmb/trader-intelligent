@@ -44,19 +44,4 @@ public class StockClassification {
     // 股票所属板块
     private String boardCode; // 板块代码
     private String boardName; // 板块名称
-
-    // private double ratio; // 静态市盈率
-    // private double dyr; // 最新股息率
-
-    // private String detailUrl; // 详细信息链接
-
-    // private double receipts; // 收益
-    // private double dratio; // 动态市盈率
-    // private double netAsset; // 净资产（每股）
-    // private double pbv; // 市净率
-
-    public String briefInfo() {
-        // return name + "[" + code + "]\t\t\t\t\t\t\t\t{" + iname + "}[" + icode + "]\t\t\t\t\t\t\t\t(" + ratio + "," + dratio + ")";
-        return "";
-    }
 }

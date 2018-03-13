@@ -1,4 +1,4 @@
-package org.actech.smart.trader.sync.parser.def;
+package org.actech.smart.trader.sync.parser.stock;
 
 import org.actech.smart.trader.Application;
 import org.actech.smart.trader.UnitTestConfiguration;

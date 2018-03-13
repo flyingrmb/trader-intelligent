@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Created by paul on 2018/3/12.
  */
-public abstract class StockHtmlResolver implements HtmlResolver<StockClassification> {
+public abstract class StockHtmlResolver<T> implements HtmlResolver {
     @Override
     public Elements navigatorToContents(Document document) {
         if (document == null) return new Elements();

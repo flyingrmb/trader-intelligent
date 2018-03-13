@@ -1,27 +1,31 @@
-package org.actech.smart.trader.sync.parser.def;
+package org.actech.smart.trader.sync.parser.stock;
 
 import org.actech.smart.trader.sync.entity.StockClassification;
-import org.actech.smart.trader.sync.parser.CacheableHtmlParser;
+import org.actech.smart.trader.sync.parser.CacheableParser;
 import org.actech.smart.trader.sync.repositories.StockClassificationRepository;
 import org.actech.smart.trader.sync.resolver.HtmlResolver;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Optional;
-import java.util.Set;
 
 /**
  * Created by paul on 2018/3/12.
  */
-public abstract class StockClassificationHtmlParser extends CacheableHtmlParser {
+public abstract class StockClassificationHtmlParser extends CacheableParser {
     @Autowired
     private StockClassificationRepository repository;
 
     protected HtmlResolver resolver;
+
+    @Override
+    protected boolean containsData(Document document) {
+        Elements elements = resolver.navigatorToContents(document);
+        return elements.size() > 0;
+    }
 
     @Override
     protected void parse(Document document, String dateStr) {

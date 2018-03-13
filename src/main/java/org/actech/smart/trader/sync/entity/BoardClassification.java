@@ -1,6 +1,8 @@
 package org.actech.smart.trader.sync.entity;
 
+import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
@@ -8,9 +10,15 @@ import org.springframework.data.mongodb.core.mapping.Document;
  */
 @Document
 @NoArgsConstructor
-public class BoardClassification extends CatalogClassification {
-    @Override
-    public boolean isLevelOne() {
-        return true;
+@Data
+public class BoardClassification extends Signature {
+    @Transient
+    protected Double index; // 页面录入指标
+
+    @Transient
+    protected String stockUrl; // 该字段不保存入数据库
+
+    public boolean equals(Object object) {
+        return super.equals(object);
     }
 }

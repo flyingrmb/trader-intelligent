@@ -9,7 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document
 @NoArgsConstructor
 // China Securities Index
-public class CsiIndustrialClassification extends CatalogClassification {
+public class CsiIndustrialClassification extends BoardClassification implements Level {
     @Override
     public boolean isLevelOne() {
         return code.length() == 2;

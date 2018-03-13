@@ -9,7 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document
 @NoArgsConstructor
 // China Securities Regulatory Commission Industrial Classification
-public class CsrcIndustrialClassification extends CatalogClassification {
+public class CsrcIndustrialClassification extends BoardClassification implements Level {
     @Override
     public boolean isLevelOne() {
         return code.length() == 1;

@@ -1,9 +1,9 @@
-package org.actech.smart.trader.sync.parser.def;
+package org.actech.smart.trader.sync.parser;
 
 import org.actech.smart.trader.Application;
 import org.actech.smart.trader.UnitTestConfiguration;
 import org.actech.smart.trader.sync.entity.CsrcIndustrialClassification;
-import org.actech.smart.trader.sync.parser.csrc.CsrcIndustrialClassificationLyrHtmlParser;
+import org.actech.smart.trader.sync.parser.csrc.CsrcIndustrialClassificationPbHtmlParser;
 import org.actech.smart.trader.sync.repositories.CsrcIndustrialClassificationRepository;
 import org.actech.smart.trader.sync.repositories.StockClassificationRepository;
 import org.jsoup.Jsoup;
@@ -28,9 +28,9 @@ import static org.junit.Assert.*;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = {Application.class, UnitTestConfiguration.class})
 @ActiveProfiles("dev")
-public class CsrcIndustrialClassificationLyrHtmlParserTest {
+public class CsrcIndustrialClassificationPbHtmlParserTest {
     @Autowired
-    private CsrcIndustrialClassificationLyrHtmlParser parser;
+    private CsrcIndustrialClassificationPbHtmlParser parser;
 
     @Autowired
     private CsrcIndustrialClassificationRepository industrialClassificationRepository;
@@ -41,7 +41,7 @@ public class CsrcIndustrialClassificationLyrHtmlParserTest {
     @Test
     public void trueIfDocumentContainsContent() throws Exception {
         ResourceLoader resourceLoader = new DefaultResourceLoader();
-        Resource resource = resourceLoader.getResource("classpath:证监会行业市盈率.htm");
+        Resource resource = resourceLoader.getResource("classpath:证监会行业市净率.htm");
         Document document = Jsoup.parse(resource.getFile(), "UTF-8");
         assertTrue(parser.containsData(document));
     }
@@ -49,7 +49,7 @@ public class CsrcIndustrialClassificationLyrHtmlParserTest {
     @Test
     public void falseIfDocumentContainsNoContent() throws Exception {
         ResourceLoader resourceLoader = new DefaultResourceLoader();
-        Resource resource = resourceLoader.getResource("classpath:证监会行业市盈率空.htm");
+        Resource resource = resourceLoader.getResource("classpath:证监会行业市净率空.htm");
         Document document = Jsoup.parse(resource.getFile(), "UTF-8");
         assertFalse(parser.containsData(document));
     }
@@ -57,7 +57,7 @@ public class CsrcIndustrialClassificationLyrHtmlParserTest {
     @Test
     public void saveInfoWhenDocumentContainsContent() throws Exception {
         ResourceLoader resourceLoader = new DefaultResourceLoader();
-        Resource resource = resourceLoader.getResource("classpath:证监会行业市盈率.htm");
+        Resource resource = resourceLoader.getResource("classpath:证监会行业市净率.htm");
         Document document = Jsoup.parse(resource.getFile(), "UTF-8");
         parser.parse(document, "2018-03-09");
 

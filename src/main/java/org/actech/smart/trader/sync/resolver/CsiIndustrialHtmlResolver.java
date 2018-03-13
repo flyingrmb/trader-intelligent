@@ -10,7 +10,7 @@ import java.util.Collection;
 import java.util.HashSet;
 
 import static org.actech.smart.trader.core.common.NumericParser.parseDouble;
-import static org.actech.smart.trader.sync.entity.CatalogClassification.DEF_INDEX;
+import static org.actech.smart.trader.sync.entity.Signature.DEF_INDEX;
 
 /**
  * Created by paul on 2018/3/12.

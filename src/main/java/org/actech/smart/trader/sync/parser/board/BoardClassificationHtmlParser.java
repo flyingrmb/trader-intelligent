@@ -1,7 +1,7 @@
 package org.actech.smart.trader.sync.parser.board;
 
 import org.actech.smart.trader.sync.entity.BoardClassification;
-import org.actech.smart.trader.sync.parser.def.CatalogClassificationHtmlParser;
+import org.actech.smart.trader.sync.parser.CatalogParser;
 import org.actech.smart.trader.sync.repositories.BoardClassificationRepository;
 import org.actech.smart.trader.sync.resolver.BoardHtmlResolver;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 /**
  * Created by paul on 2018/3/12.
  */
-public abstract class BoardClassificationHtmlParser extends CatalogClassificationHtmlParser<BoardClassification> {
+public abstract class BoardClassificationHtmlParser extends CatalogParser<BoardClassification> {
     @Autowired
     public void setIndustrialClassificationRepository(BoardClassificationRepository repository) {
         this.repository = repository;
@@ -17,6 +17,6 @@ public abstract class BoardClassificationHtmlParser extends CatalogClassificatio
 
     @Autowired
     public void setIndustrialClassificationHtmlResolver(BoardHtmlResolver htmlResolver) {
-        this.resolver = htmlResolver;
+        this.industrialResolver = htmlResolver;
     }
 }

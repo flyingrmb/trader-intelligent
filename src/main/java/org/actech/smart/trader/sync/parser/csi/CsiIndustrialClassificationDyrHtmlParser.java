@@ -1,6 +1,8 @@
 package org.actech.smart.trader.sync.parser.csi;
 
+import org.actech.smart.trader.sync.entity.BoardClassification;
 import org.actech.smart.trader.sync.entity.CsiIndustrialClassification;
+import org.springframework.beans.EntityUtils;
 import org.springframework.stereotype.Component;
 
 /**
@@ -9,19 +11,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class CsiIndustrialClassificationDyrHtmlParser extends CsiIndustrialClassificationHtmlParser {
     @Override
-    protected CsiIndustrialClassification merge(CsiIndustrialClassification newObj, CsiIndustrialClassification oldObj) {
-        if (isEqual(newObj, oldObj)) return null;
-        newObj = merge0(newObj, oldObj);
-
-        newObj.setDyr(newObj.getIndex());
-        return newObj;
-    }
-
-    @Override
-    protected boolean isEqual(CsiIndustrialClassification newObj, CsiIndustrialClassification oldObj) {
-        boolean equal = super.isEqual(newObj, oldObj);
-        if (!equal) return false;
-
-        return newObj.getIndex() == oldObj.getDyr();
+    protected CsiIndustrialClassification setIndex(CsiIndustrialClassification classification) {
+        classification.setDyr(classification.getIndex());
+        return classification;
     }
 }

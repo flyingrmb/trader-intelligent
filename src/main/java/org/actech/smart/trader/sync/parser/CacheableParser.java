@@ -13,7 +13,7 @@ import org.springframework.core.env.Environment;
 /**
  * Created by paul on 2018/3/11.
  */
-public abstract class CacheableHtmlParser implements HtmlParser, Cacheable {
+public abstract class CacheableParser implements HtmlParser, Cacheable {
     @Autowired
     private DocumentUrlCache cache;
 
@@ -22,9 +22,7 @@ public abstract class CacheableHtmlParser implements HtmlParser, Cacheable {
         return containsData(cache.get(url));
     }
 
-    protected boolean containsData(Document document) {
-        return true;
-    }
+    protected abstract boolean containsData(Document document);
 
     @Override
     public void parse(String url, String dateStr) {

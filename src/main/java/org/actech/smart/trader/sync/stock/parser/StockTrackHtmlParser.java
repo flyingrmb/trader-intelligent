@@ -7,6 +7,7 @@ import org.actech.smart.trader.sync.stock.repository.StockFundTrackRepository;
 import org.actech.smart.trader.sync.stock.resolver.CsrcStockTrackHtmlResolver;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
+import org.springframework.beans.EntityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -44,6 +45,7 @@ public class StockTrackHtmlParser extends CacheableParser {
             StockFundTrack oldObj = repository.findByReleaseAndCode(dateStr, code);
             if (((Signature)stockFundTrack).equals(oldObj)) continue;
 
+            EntityUtils.copyProperties(oldObj, stockFundTrack);
             shouldSave.add(stockFundTrack);
         }
 

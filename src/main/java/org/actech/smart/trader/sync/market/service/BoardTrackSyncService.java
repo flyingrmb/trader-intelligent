@@ -21,11 +21,8 @@ import java.util.Collection;
 @Service
 @Registry
 public class BoardTrackSyncService extends RemoteConnection {
-    @ServicePoint(code="B1", name="同步最新主板数据", example = {
-            "service/B1",
-            "service/B1:2018-03-17"
-    })
-    public void syncCurrentBoardData(String param) {
+    @ServicePoint(code="B1", name="同步最新主板数据", example = "service/B1")
+    public String syncCurrentBoardData(String param) {
         DateIterator dateIterator = new DateIterator();
         String dateStr = dateIterator.get();
 
@@ -36,19 +33,18 @@ public class BoardTrackSyncService extends RemoteConnection {
 
             parse(urlIndicator);
         }
+
+        return "SUCCESS";
     }
 
-    @ServicePoint(code="B2", name="同步主板所有历史数据", example = {
-            "service/B2",
-            "service/B2:2018-03-17"
-    })
-    public void syncAllBoardData(String param) {
+    @ServicePoint(code="B2", async=true, name="同步主板所有历史数据", example = "service/B2")
+    public String syncAllBoardData(String param) {
         DateIterator dateIterator = new DateIterator();
         String dateStr = dateIterator.get();
 
         int cntForNotFindingDate = 0;
         while (cntForNotFindingDate < tolerateNotFindingDate) {
-            logger.info("更新证监会市场指数历史数据，日期：" + dateStr);
+            logger.info("更新各主板指数历史数据，日期：" + dateStr);
             Collection<UrlIndicator> urlIndicators = createUrlIndicators(dateStr);
 
             boolean findNothing = true;
@@ -68,6 +64,8 @@ public class BoardTrackSyncService extends RemoteConnection {
 
             cntForNotFindingDate = 0; // reset the counter to 0.
         }
+
+        return "SUCCESS";
     }
 
     @Autowired

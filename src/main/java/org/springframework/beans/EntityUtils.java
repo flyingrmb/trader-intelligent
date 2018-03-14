@@ -546,7 +546,8 @@ public class EntityUtils {
     private static boolean copyProperties(Object source, Object target, @Nullable Class<?> editable,
                                        @Nullable String... ignoreProperties) throws BeansException {
 
-        Assert.notNull(source, "Source must not be null");
+        if (source == null) return true;
+
         Assert.notNull(target, "Target must not be null");
 
         Class<?> actualEditable = target.getClass();

@@ -17,17 +17,12 @@ public class DistributeController {
     private DistributeService distributeService;
 
     @RequestMapping("service/{serviceCode}")
-    public Callable<String> callServiceWithoutParameter(@PathVariable String serviceCode) {
+    public String callServiceWithoutParameter(@PathVariable String serviceCode) {
         return callService(serviceCode, null);
     }
 
     @RequestMapping("service/{serviceCode}/param/{parameter}")
-    public Callable<String> callService(@PathVariable String serviceCode, @PathVariable String parameter) {
-        return new Callable<String>() {
-            @Override
-            public String call() throws Exception {
-                return distributeService.distribute(serviceCode, parameter);
-            }
-        };
+    public String callService(@PathVariable String serviceCode, @PathVariable String parameter) {
+        return distributeService.distribute(serviceCode, parameter);
     }
 }

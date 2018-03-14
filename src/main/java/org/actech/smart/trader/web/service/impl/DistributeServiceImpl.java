@@ -4,6 +4,7 @@ import org.actech.smart.trader.web.service.DistributeService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
@@ -34,10 +35,10 @@ public class DistributeServiceImpl implements DistributeService {
             String serviceName = pair[0].trim();
 
             if (pair.length > 2) parameter = pair[1].trim();
-            String serviceStatus = registryCenter.call(serviceName, parameter);
+            Object object = registryCenter.call(serviceName, parameter);
 
             sb.append("*******service[" + serviceName + "]**********\r\n");
-            sb.append(serviceStatus);
+            sb.append(object);
             sb.append("\r\n");
         }
 

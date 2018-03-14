@@ -5,5 +5,5 @@ package org.actech.smart.trader.registry.service;
  */
 public interface ServiceRegistryCenter {
     String dashboard();
-    String call(String serviceName, String parameter);
+    Object call(String serviceName, String parameter);
 }

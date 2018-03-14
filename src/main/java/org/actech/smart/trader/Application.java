@@ -17,6 +17,7 @@ import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.SimpleMongoDbFactory;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Component;
 
 import javax.validation.constraints.NotNull;
@@ -27,6 +28,7 @@ import javax.validation.constraints.NotNull;
 @SpringBootApplication
 @EnableMongoRepositories
 @EnableConfigurationProperties
+@EnableAsync
 public class Application {
     @Bean
     @Profile("default")

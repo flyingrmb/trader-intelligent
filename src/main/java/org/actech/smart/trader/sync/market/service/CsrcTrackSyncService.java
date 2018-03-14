@@ -1,5 +1,8 @@
 package org.actech.smart.trader.sync.market.service;
 
+import org.actech.smart.trader.core.util.DateIterator;
+import org.actech.smart.trader.registry.annotation.Registry;
+import org.actech.smart.trader.registry.annotation.ServicePoint;
 import org.actech.smart.trader.sync.market.parser.csrc.CsrcIndustrialClassificationDyrHtmlParser;
 import org.actech.smart.trader.sync.market.parser.csrc.CsrcIndustrialClassificationLyrHtmlParser;
 import org.actech.smart.trader.sync.market.parser.csrc.CsrcIndustrialClassificationPbHtmlParser;
@@ -10,12 +13,57 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import java.util.Collection;
 
 /**
  * Created by paul on 2018/3/10.
  */
 @Service
+@Registry
 public class CsrcTrackSyncService extends RemoteConnection {
+    @ServicePoint(code="CSRC1", name="同步CSRC指数数据", example = "service/CSRC1")
+    public void syncCurrentBoardData(String param) {
+        DateIterator dateIterator = new DateIterator();
+        String dateStr = dateIterator.get();
+
+        Collection<UrlIndicator> urlIndicators = createUrlIndicators(dateStr);
+
+        for (UrlIndicator urlIndicator : urlIndicators) {
+            if (!containsData(urlIndicator)) continue;
+
+            parse(urlIndicator);
+        }
+    }
+
+    @ServicePoint(code="CSRC2", async=true, name="同步CSRC历史指数数据", example = "service/CSRC2")
+    public void syncAllBoardData(String param) {
+        DateIterator dateIterator = new DateIterator();
+        String dateStr = dateIterator.get();
+
+        int cntForNotFindingDate = 0;
+        while (cntForNotFindingDate < tolerateNotFindingDate) {
+            logger.info("更新CSRC指数历史数据，日期：" + dateStr);
+            Collection<UrlIndicator> urlIndicators = createUrlIndicators(dateStr);
+
+            boolean findNothing = true;
+            for (UrlIndicator urlIndicator : urlIndicators) {
+                if (!containsData(urlIndicator)) continue;
+
+                parse(urlIndicator);
+                findNothing = false;
+            }
+
+            dateStr = dateIterator.yesterday().get();
+
+            if (findNothing) {
+                cntForNotFindingDate++;
+                continue;
+            }
+
+            cntForNotFindingDate = 0; // reset the counter to 0.
+        }
+    }
+
     @Autowired
     private ApplicationContext applicationContext;
 

@@ -13,5 +13,6 @@ import java.lang.annotation.Target;
 public @interface ServicePoint {
     String code() default "";
     String name() default "";
+    boolean async() default false;
     String[] example() default "";
 }

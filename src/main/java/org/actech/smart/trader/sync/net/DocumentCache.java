@@ -1,6 +1,8 @@
 package org.actech.smart.trader.sync.net;
 
 import org.actech.smart.trader.core.util.LimitedSizeCache;
+import org.actech.smart.trader.registry.annotation.Registry;
+import org.actech.smart.trader.registry.annotation.ServicePoint;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.jsoup.Jsoup;
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Component;
  * Created by paul on 2018/3/13.
  */
 @Component
+@Registry
 public class DocumentCache {
     private final Log logger = LogFactory.getLog(getClass());
     private final static int maxRetryTime = 3; // max retry time when network is bad.
@@ -21,6 +24,12 @@ public class DocumentCache {
     private Environment environment;
 
     private LimitedSizeCache<String, Document> cache = new LimitedSizeCache<String, Document>(100);
+
+    @ServicePoint(name="清空下载的缓存页面")
+    public String clear(String param) {
+        cache.clear();
+        return "SUCCESS";
+    }
 
     public Document get(String url) {
         if (cache.get(url) == null) {

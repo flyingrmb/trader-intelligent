@@ -35,4 +35,9 @@ public class LimitedSizeCache<K, V> {
             }
         }
     }
+
+    public synchronized void clear() {
+        indices.clear();
+        cache.clear();
+    }
 }

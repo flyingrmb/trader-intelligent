@@ -10,6 +10,7 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.annotation.AnnotationUtils;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import org.springframework.util.ReflectionUtils;
@@ -18,6 +19,8 @@ import java.lang.reflect.Method;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * Created by paul on 2018/3/14.
@@ -27,18 +30,26 @@ public class ServiceRegistryCenterImpl implements ServiceRegistryCenter {
     private final Log logger = LogFactory.getLog(this.getClass());
 
     private Map<String, ServiceDescriptor> services = null;
+    private ExecutorService executor = Executors.newFixedThreadPool(10);
 
     @Override
-    public String call(String serviceName, String parameter) {
+    public Object call(String serviceName, String parameter) {
         if (services == null) register();
 
         ServiceDescriptor descriptor = services.get(serviceName);
         Assert.notNull(descriptor, "服务未注册，请使用service/help查阅服务注册情况");
 
-        Object object = ReflectionUtils.invokeMethod(descriptor.getMethod(), descriptor.getBean(), parameter);
-        Assert.notNull(object, "服务异常，服务请求完成后返回null.");
+        if (!descriptor.getServicePoint().async()) {
+            return ReflectionUtils.invokeMethod(descriptor.getMethod(), descriptor.getBean(), parameter);
+        }
 
-        return object.toString();
+        executor.submit(new Runnable() {
+            @Override
+            public void run() {
+                ReflectionUtils.invokeMethod(descriptor.getMethod(), descriptor.getBean(), parameter);
+            }
+        });
+        return "Async Executing...";
     }
 
     @Autowired

@@ -2,9 +2,9 @@ package org.actech.smart.trader.sync;
 
 import org.actech.smart.trader.Application;
 import org.actech.smart.trader.UnitTestConfiguration;
-import org.actech.smart.trader.sync.entity.CsrcIndustrialClassification;
-import org.actech.smart.trader.sync.service.CsrcIndustrialClassificationSync;
-import org.actech.smart.trader.sync.repositories.CsrcIndustrialClassificationRepository;
+import org.actech.smart.trader.sync.market.entity.CsrcIndustrialClassification;
+import org.actech.smart.trader.sync.market.service.CsrcTrackSyncService;
+import org.actech.smart.trader.sync.market.repository.CsrcIndustrialClassificationRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +30,7 @@ import static org.hamcrest.core.Is.*;
 @ActiveProfiles("dev")
 public class CsrcCatalogClassificationHtmlParserTests {
     @Autowired
-    private CsrcIndustrialClassificationSync parser;
+    private CsrcTrackSyncService parser;
     @Autowired
     private CsrcIndustrialClassificationRepository repository;
 

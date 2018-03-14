@@ -2,11 +2,9 @@ package org.actech.smart.trader.sync.parser.stock;
 
 import org.actech.smart.trader.Application;
 import org.actech.smart.trader.UnitTestConfiguration;
-import org.actech.smart.trader.sync.entity.StockClassification;
-import org.actech.smart.trader.sync.entity.StockFundTrack;
-import org.actech.smart.trader.sync.parser.stock.StockTrackHtmlParser;
-import org.actech.smart.trader.sync.repositories.StockClassificationRepository;
-import org.actech.smart.trader.sync.repositories.StockFundTrackRepository;
+import org.actech.smart.trader.sync.stock.entity.StockFundTrack;
+import org.actech.smart.trader.sync.stock.repository.StockFundTrackRepository;
+import org.actech.smart.trader.sync.stock.parser.StockTrackHtmlParser;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.junit.Test;
@@ -20,7 +18,6 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.IOException;
-import java.util.Optional;
 
 import static org.hamcrest.core.Is.*;
 import static org.hamcrest.core.IsNull.*;

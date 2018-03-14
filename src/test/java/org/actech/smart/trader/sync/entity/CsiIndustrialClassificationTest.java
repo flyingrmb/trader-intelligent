@@ -1,7 +1,7 @@
 package org.actech.smart.trader.sync.entity;
 
+import org.actech.smart.trader.sync.market.entity.CsiIndustrialClassification;
 import org.junit.Test;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.EntityUtils;
 
 import static org.junit.Assert.*;

@@ -2,8 +2,9 @@ package org.actech.smart.trader.sync.parser.stock;
 
 import org.actech.smart.trader.Application;
 import org.actech.smart.trader.UnitTestConfiguration;
-import org.actech.smart.trader.sync.entity.StockClassification;
-import org.actech.smart.trader.sync.repositories.StockClassificationRepository;
+import org.actech.smart.trader.sync.market.entity.StockClassification;
+import org.actech.smart.trader.sync.market.repository.StockClassificationRepository;
+import org.actech.smart.trader.sync.stock.parser.StockClassificationHtmlParser;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.junit.Test;

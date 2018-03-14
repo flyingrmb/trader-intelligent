@@ -2,10 +2,10 @@ package org.actech.smart.trader.sync.parser;
 
 import org.actech.smart.trader.Application;
 import org.actech.smart.trader.UnitTestConfiguration;
-import org.actech.smart.trader.sync.entity.CsrcIndustrialClassification;
-import org.actech.smart.trader.sync.parser.csrc.CsrcIndustrialClassificationLyrHtmlParser;
-import org.actech.smart.trader.sync.repositories.CsrcIndustrialClassificationRepository;
-import org.actech.smart.trader.sync.repositories.StockClassificationRepository;
+import org.actech.smart.trader.sync.market.entity.CsrcIndustrialClassification;
+import org.actech.smart.trader.sync.market.parser.csrc.CsrcIndustrialClassificationLyrHtmlParser;
+import org.actech.smart.trader.sync.market.repository.CsrcIndustrialClassificationRepository;
+import org.actech.smart.trader.sync.market.repository.StockClassificationRepository;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.junit.Test;
@@ -43,7 +43,7 @@ public class CsrcIndustrialClassificationLyrHtmlParserTest {
         ResourceLoader resourceLoader = new DefaultResourceLoader();
         Resource resource = resourceLoader.getResource("classpath:证监会行业市盈率.htm");
         Document document = Jsoup.parse(resource.getFile(), "UTF-8");
-        assertTrue(parser.containsData(document));
+        assertTrue(parser.shouldParse(document));
     }
 
     @Test
@@ -51,7 +51,7 @@ public class CsrcIndustrialClassificationLyrHtmlParserTest {
         ResourceLoader resourceLoader = new DefaultResourceLoader();
         Resource resource = resourceLoader.getResource("classpath:证监会行业市盈率空.htm");
         Document document = Jsoup.parse(resource.getFile(), "UTF-8");
-        assertFalse(parser.containsData(document));
+        assertFalse(parser.shouldParse(document));
     }
 
     @Test

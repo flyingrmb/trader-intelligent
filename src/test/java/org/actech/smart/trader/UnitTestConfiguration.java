@@ -45,11 +45,4 @@ public class UnitTestConfiguration {
                 config.net().getPort());
         return mongo;
     }
-
-/*    static {
-        LoggerContext loggerContext = ((Logger) LoggerFactory.getLogger(UnitTestConfiguration.class))
-                .getLoggerContext();
-        loggerContext.reset();
-        new BasicConfigurator().configure(loggerContext);
-    }*/
 }

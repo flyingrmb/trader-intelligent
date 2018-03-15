@@ -7,7 +7,6 @@ import org.actech.smart.trader.sync.market.parser.csi.CsiIndustrialClassificatio
 import org.actech.smart.trader.sync.market.parser.csi.CsiIndustrialClassificationLyrHtmlParser;
 import org.actech.smart.trader.sync.market.parser.csi.CsiIndustrialClassificationPbHtmlParser;
 import org.actech.smart.trader.sync.market.parser.csi.CsiIndustrialClassificationTtmHtmlParser;
-import org.actech.smart.trader.sync.net.RemoteConnection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
@@ -20,9 +19,9 @@ import java.util.Collection;
  */
 @Service
 @Registry
-public class CsiTrackSyncService extends RemoteConnection {
-    @ServicePoint(code="CSI1", name="同步CSI指数数据", example = "service/CSI1")
-    public String syncCurrentBoardData(String param) {
+public class CsiTrackSyncService extends CsindexHtmlStructure {
+    @ServicePoint(code="C1", name="同步CSI指数数据", example = "service/CSI1")
+    public String syncCurrentCsiData(String param) {
         DateIterator dateIterator = new DateIterator();
         String dateStr = dateIterator.get();
 
@@ -37,8 +36,8 @@ public class CsiTrackSyncService extends RemoteConnection {
         return "SUCCESS";
     }
 
-    @ServicePoint(code="CSI2", async=true, name="同步CSI历史指数数据", example = "service/CSI2")
-    public String syncAllBoardData(String param) {
+    @ServicePoint(code="C2", async=true, name="同步CSI历史指数数据", example = "service/CSI2")
+    public String syncAllCsiData(String param) {
         DateIterator dateIterator = new DateIterator();
         String dateStr = dateIterator.get();
 

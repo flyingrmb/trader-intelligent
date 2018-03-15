@@ -1,8 +1,7 @@
-package org.actech.smart.trader.sync.net;
+package org.actech.smart.trader.sync.market.service;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.actech.smart.trader.core.util.DateIterator;
 import org.actech.smart.trader.core.parser.HtmlParser;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -12,7 +11,7 @@ import java.util.*;
 /**
  * Created by paul on 2018/3/11.
  */
-public abstract class RemoteConnection {
+public abstract class CsindexHtmlStructure {
     protected final Log logger = LogFactory.getLog(getClass());
     protected final String baseUrl = "http://www.csindex.com.cn/zh-CN/downloads/industry-price-earnings-ratio";
 

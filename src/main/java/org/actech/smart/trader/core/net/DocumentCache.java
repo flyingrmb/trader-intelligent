@@ -1,4 +1,4 @@
-package org.actech.smart.trader.sync.net;
+package org.actech.smart.trader.core.net;
 
 import org.actech.smart.trader.core.util.LimitedSizeCache;
 import org.actech.smart.trader.registry.annotation.Registry;
@@ -48,7 +48,7 @@ public class DocumentCache {
         }
         try {
             return Jsoup.connect(url).get();
-        } catch (Exception e) {
+        } catch (Throwable e) {
             retryTime++;
             return downloadWithRetryStrategy(url, retryTime);
         }

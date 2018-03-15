@@ -1,9 +1,8 @@
 package org.actech.smart.trader.sync.market.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -11,7 +10,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
  * Created by paul on 2018/3/10.
  */
 @Document
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class StockClassification {
@@ -44,4 +44,12 @@ public class StockClassification {
     // 股票所属板块
     private String boardCode; // 板块代码
     private String boardName; // 板块名称
+
+    @Transient
+    private String url; // 保存数据爬取地址
+
+    public int hashCode() {
+        if (code == null) return 0;
+        return code.hashCode();
+    }
 }

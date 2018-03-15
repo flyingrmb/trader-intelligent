@@ -4,12 +4,33 @@ package org.actech.smart.trader.core.util;
  * Created by paul on 2018/3/10.
  */
 public class NumericUtils {
+    public static Double parseDouble(String text, Double def) {
+        return parseDouble(text, 1.00, def);
+    }
 
-    public static Double parseDouble(String text, Double defval) {
+
+    public static Double parseDouble(String text, Double ratio, Double def) {
         try {
-            return Double.parseDouble(text);
+            if (text == null) return def;
+
+            text = text.trim();
+            if (text.endsWith("亿")) {
+                ratio *= 100000000;
+                text = text.substring(0, text.length() - "亿".length());
+            } else if (text.endsWith("万")) {
+                ratio *= 10000;
+                text = text.substring(0, text.length() - "万".length());
+            } else if (text.endsWith("元")) {
+                ratio *= 1;
+                text = text.substring(0, text.length() - "亿".length());
+            } else if (text.endsWith("%")) {
+                ratio *= 0.01;
+                text = text.substring(0, text.length() - "%".length());
+            }
+
+            return Double.parseDouble(text) * ratio;
         } catch (NumberFormatException e) {
-            return defval;
+            return def;
         }
     }
 

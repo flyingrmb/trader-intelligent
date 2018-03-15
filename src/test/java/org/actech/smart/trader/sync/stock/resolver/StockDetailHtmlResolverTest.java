@@ -1,10 +1,8 @@
-package org.actech.smart.trader.sync.parser.stock;
+package org.actech.smart.trader.sync.stock.resolver;
 
 import org.actech.smart.trader.Application;
 import org.actech.smart.trader.UnitTestConfiguration;
 import org.actech.smart.trader.sync.stock.entity.StockFundTrack;
-import org.actech.smart.trader.sync.stock.repository.StockFundTrackRepository;
-import org.actech.smart.trader.sync.stock.parser.StockTrackHtmlParser;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.junit.Test;
@@ -18,33 +16,28 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.IOException;
+import java.util.Collection;
 
 import static org.hamcrest.core.Is.*;
 import static org.hamcrest.core.IsNull.*;
 import static org.junit.Assert.*;
+
 /**
- * Created by paul on 2018/3/13.
+ * Created by paul on 2018/3/15.
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = {Application.class, UnitTestConfiguration.class})
 @ActiveProfiles("dev")
-public class StockTrackHtmlParserTest {
+public class StockDetailHtmlResolverTest {
     @Autowired
-    private StockTrackHtmlParser parser;
-
-    @Autowired
-    private StockFundTrackRepository repository;
+    private StockDetailHtmlResolver parser;
 
     @Test
-    public void shouldParseStockTrack() throws IOException {
+    public void shouldParseStockDetail() throws IOException {
         ResourceLoader resourceLoader = new DefaultResourceLoader();
-        Resource resource = resourceLoader.getResource("classpath:个股市盈率.htm");
-        Document document = Jsoup.parse(resource.getFile(), "UTF-8");
-
-        parser.parse(document, "2018-03-13");
-
-
-        StockFundTrack stockFundTrack = repository.findByReleaseAndCode("2018-03-13", "300331");
-        assertThat(stockFundTrack, is(notNullValue()));
+        Resource resource = resourceLoader.getResource("classpath:海航基础(停牌).htm");
+        Document document = Jsoup.parse(resource.getFile(), "GB2312");
+        Collection<StockFundTrack> result = parser.resolve(document);
+        assertThat(result, is(notNullValue()));
     }
 }

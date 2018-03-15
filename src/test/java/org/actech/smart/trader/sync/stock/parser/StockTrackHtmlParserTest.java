@@ -1,10 +1,10 @@
-package org.actech.smart.trader.sync.parser.stock;
+package org.actech.smart.trader.sync.stock.parser;
 
 import org.actech.smart.trader.Application;
 import org.actech.smart.trader.UnitTestConfiguration;
-import org.actech.smart.trader.sync.market.entity.StockClassification;
-import org.actech.smart.trader.sync.market.repository.StockClassificationRepository;
-import org.actech.smart.trader.sync.stock.parser.StockClassificationHtmlParser;
+import org.actech.smart.trader.sync.stock.entity.StockFundTrack;
+import org.actech.smart.trader.sync.stock.repository.StockFundTrackRepository;
+import org.actech.smart.trader.sync.stock.parser.StockTrackHtmlParser;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.junit.Test;
@@ -18,39 +18,33 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.IOException;
-import java.util.Optional;
 
-import static org.hamcrest.core.IsNull.notNullValue;
+import static org.hamcrest.core.Is.*;
+import static org.hamcrest.core.IsNull.*;
 import static org.junit.Assert.*;
-
-import static org.hamcrest.core.Is.is;
-
 /**
- * Created by paul on 2018/3/12.
+ * Created by paul on 2018/3/13.
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = {Application.class, UnitTestConfiguration.class})
 @ActiveProfiles("dev")
-public class StockClassificationHtmlParserTest {
+public class StockTrackHtmlParserTest {
     @Autowired
-    private StockClassificationHtmlParser parser;
+    private StockTrackHtmlParser parser;
 
     @Autowired
-    private StockClassificationRepository repository;
+    private StockFundTrackRepository repository;
 
     @Test
-    public void shouldParseStockClassification() throws IOException {
+    public void shouldParseStockTrack() throws IOException {
         ResourceLoader resourceLoader = new DefaultResourceLoader();
         Resource resource = resourceLoader.getResource("classpath:个股市盈率.htm");
         Document document = Jsoup.parse(resource.getFile(), "UTF-8");
 
-        parser.parse(document, "");
+        parser.parse(document, "2018-03-13");
 
 
-        Optional<StockClassification> optional = repository.findById("300331");
-        assertTrue(optional.isPresent());
-
-        StockClassification classification = optional.get();
-        assertThat(classification, is(notNullValue()));
+        StockFundTrack stockFundTrack = repository.findByReleaseAndCode("2018-03-13", "300331");
+        assertThat(stockFundTrack, is(notNullValue()));
     }
 }

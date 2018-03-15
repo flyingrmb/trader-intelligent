@@ -1,7 +1,7 @@
 package org.actech.smart.trader.core.parser;
 
 import org.actech.smart.trader.core.trait.Cacheable;
-import org.actech.smart.trader.sync.net.DocumentCache;
+import org.actech.smart.trader.core.net.DocumentCache;
 import org.jsoup.nodes.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 

@@ -20,11 +20,16 @@ public class DateIterator {
     public DateIterator(String dateStr) {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
+        if (dateStr == null || dateStr.trim().length() == 0) {
+            this.init(new Date(), format);
+            return ;
+        }
+
         Date date = null;
         try {
             date = format.parse(dateStr);
         } catch (ParseException e) {
-            logger.warn("日期解析失败，dateStr=" + dateStr);
+            logger.warn("解析日期字符串失败", e);
             date = new Date();
         }
 

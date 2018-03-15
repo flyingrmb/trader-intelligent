@@ -2,7 +2,7 @@ package org.actech.smart.trader.registry.service.impl;
 
 import org.actech.smart.trader.registry.service.ServiceEncoder;
 import org.springframework.stereotype.Service;
-import sun.jvm.hotspot.utilities.Assert;
+import org.springframework.util.Assert;
 
 import javax.annotation.PostConstruct;
 import java.util.HashSet;
@@ -60,7 +60,7 @@ public class ServiceEncoderImpl implements ServiceEncoder {
             iterator++;
         }
 
-        Assert.that(false, "服务编码注册已满，请扩充服务编码！");
+        Assert.notNull(null, "服务编码注册已满，请扩充服务编码！");
         return "Nothing.";
     }
 

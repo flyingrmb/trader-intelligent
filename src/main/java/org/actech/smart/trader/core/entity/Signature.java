@@ -26,6 +26,14 @@ public class Signature {
     protected Double pb; // 市净率
     protected Double dyr; // 股息率
 
+    public int hashCode() {
+        if (code == null && release == null) return 0;
+        if (code == null) return release.hashCode();
+        if (release == null) return code.hashCode();
+
+        return release.hashCode() + code.hashCode();
+    }
+
     public boolean equals(Object object) {
         if (object == null) return false;
         if (!(object instanceof Signature)) return false;

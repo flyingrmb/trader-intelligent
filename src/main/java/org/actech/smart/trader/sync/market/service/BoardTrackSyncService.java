@@ -7,7 +7,6 @@ import org.actech.smart.trader.sync.market.parser.board.BoardClassificationDyrHt
 import org.actech.smart.trader.sync.market.parser.board.BoardClassificationPbHtmlParser;
 import org.actech.smart.trader.sync.market.parser.board.BoardClassificationTtmHtmlParser;
 import org.actech.smart.trader.sync.market.parser.board.BoardClssificationLyrHtmlParser;
-import org.actech.smart.trader.sync.net.RemoteConnection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
@@ -20,7 +19,7 @@ import java.util.Collection;
  */
 @Service
 @Registry
-public class BoardTrackSyncService extends RemoteConnection {
+public class BoardTrackSyncService extends CsindexHtmlStructure {
     @ServicePoint(code="B1", name="同步最新主板数据", example = "service/B1")
     public String syncCurrentBoardData(String param) {
         DateIterator dateIterator = new DateIterator();
@@ -78,4 +77,5 @@ public class BoardTrackSyncService extends RemoteConnection {
         navigatorMap.put(Domain.PB, new HtmlNavigator("zy3", applicationContext.getBean(BoardClassificationPbHtmlParser.class))); // 市净率
         navigatorMap.put(Domain.DYR, new HtmlNavigator("zy4", applicationContext.getBean(BoardClassificationDyrHtmlParser.class))); // 股息率
     }
+
 }

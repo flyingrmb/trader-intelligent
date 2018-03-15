@@ -22,4 +22,15 @@ public class StockTradeTrack {
     @Indexed
     private String code;
     private String name;
+
+    private Double openPrice;
+    private Double closingPrice;
+    private Double highestPrice;
+    private Double lowestPrice;
+    private Double margin;
+    private Double marginRatio;
+    private Double volumn;
+    private Double turnVolumn;
+    private Double amplitude;
+    private Double turnoverRate;
 }

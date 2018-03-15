@@ -7,7 +7,6 @@ import org.actech.smart.trader.sync.market.parser.csrc.CsrcIndustrialClassificat
 import org.actech.smart.trader.sync.market.parser.csrc.CsrcIndustrialClassificationLyrHtmlParser;
 import org.actech.smart.trader.sync.market.parser.csrc.CsrcIndustrialClassificationPbHtmlParser;
 import org.actech.smart.trader.sync.market.parser.csrc.CsrcIndustrialClassificationTtmHtmlParser;
-import org.actech.smart.trader.sync.net.RemoteConnection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
@@ -20,9 +19,9 @@ import java.util.Collection;
  */
 @Service
 @Registry
-public class CsrcTrackSyncService extends RemoteConnection {
-    @ServicePoint(code="CSRC1", name="同步CSRC指数数据", example = "service/CSRC1")
-    public void syncCurrentBoardData(String param) {
+public class CsrcTrackSyncService extends CsindexHtmlStructure {
+    @ServicePoint(code="A1", name="同步CSRC指数数据", example = "service/CSRC1")
+    public void syncCsrcCurrentData(String param) {
         DateIterator dateIterator = new DateIterator();
         String dateStr = dateIterator.get();
 
@@ -35,8 +34,8 @@ public class CsrcTrackSyncService extends RemoteConnection {
         }
     }
 
-    @ServicePoint(code="CSRC2", async=true, name="同步CSRC历史指数数据", example = "service/CSRC2")
-    public void syncAllBoardData(String param) {
+    @ServicePoint(code="A2", async=true, name="同步CSRC历史指数数据", example = "service/CSRC2")
+    public void syncAllCsrcData(String param) {
         DateIterator dateIterator = new DateIterator();
         String dateStr = dateIterator.get();
 

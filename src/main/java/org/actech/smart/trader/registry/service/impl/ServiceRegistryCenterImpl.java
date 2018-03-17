@@ -30,7 +30,7 @@ public class ServiceRegistryCenterImpl implements ServiceRegistryCenter {
     private final Log logger = LogFactory.getLog(this.getClass());
 
     private Map<String, ServiceDescriptor> services = null;
-    private ExecutorService executor = Executors.newFixedThreadPool(10);
+    private ExecutorService executor = Executors.newFixedThreadPool(20);
 
     @Override
     public Object call(String serviceName, String parameter) {
@@ -49,6 +49,14 @@ public class ServiceRegistryCenterImpl implements ServiceRegistryCenter {
                 ReflectionUtils.invokeMethod(descriptor.getMethod(), descriptor.getBean(), parameter);
             }
         });
+
+        /*new Thread(new Runnable() {
+            @Override
+            public void run() {
+                ReflectionUtils.invokeMethod(descriptor.getMethod(), descriptor.getBean(), parameter);
+            }
+        }).start();*/
+
         return "Async Executing...";
     }
 

@@ -5,5 +5,5 @@ package org.actech.smart.trader.core.parser;
  */
 public interface HtmlParser {
     boolean shouldParse(String url);
-    void parse(String url, String dateStr);
+    void parse(String url, Object parameter);
 }

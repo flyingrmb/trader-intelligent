@@ -34,7 +34,7 @@ public class DistributeServiceImpl implements DistributeService {
 
             String serviceName = pair[0].trim();
 
-            if (pair.length > 2) parameter = pair[1].trim();
+            if (pair.length >= 2) parameter = pair[1].trim();
             Object object = registryCenter.call(serviceName, parameter);
 
             sb.append("*******service[" + serviceName + "]**********\r\n");

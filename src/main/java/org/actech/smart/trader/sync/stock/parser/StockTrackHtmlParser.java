@@ -10,6 +10,7 @@ import org.jsoup.select.Elements;
 import org.springframework.beans.EntityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.util.Assert;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -18,7 +19,7 @@ import java.util.HashSet;
  * Created by paul on 2018/3/13.
  */
 @Component
-public class StockTrackHtmlParser extends CacheableParser {
+public class StockTrackHtmlParser extends CacheableParser<Document> {
     @Autowired
     private StockFundTrackRepository repository;
 
@@ -32,7 +33,12 @@ public class StockTrackHtmlParser extends CacheableParser {
     }
 
     @Override
-    public void parse(Document document, String dateStr) {
+    public void parse(Document document, Object parameter) {
+        Assert.notNull(parameter, "parameter should not be null.");
+        Assert.isTrue(parameter instanceof String, "parameter should be a string.");
+
+        String dateStr = (String)parameter;
+
         Collection<StockFundTrack> stockFunTracks = resolver.resolve(document);
 
         Collection<StockFundTrack> shouldSave = new HashSet<StockFundTrack>();
@@ -40,7 +46,7 @@ public class StockTrackHtmlParser extends CacheableParser {
             stockFundTrack.setRelease(dateStr);
 
             String code = stockFundTrack.getCode();
-            if (code == null || dateStr == null) continue;
+            if (code == null || parameter == null) continue;
 
             StockFundTrack oldObj = repository.findByReleaseAndCode(dateStr, code);
             if (((Signature)stockFundTrack).equals(oldObj)) continue;

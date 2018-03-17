@@ -44,6 +44,7 @@ public class DailySyncServiceImpl implements DailySyncService {
         boardTrackSyncService.syncCurrentBoardData(null);
         logger.info("处理当日所有股票基本面数据>>>");
         stockTrackSyncService.syncStockDetailInfo(null);
+        logger.info("");
         logger.info("完成所有数据处理！");
     }
 }

@@ -17,6 +17,26 @@ public class SeasonIteratorTest {
         iterator = iterator.preSeason();
         System.out.println(iterator.year());
         System.out.println(iterator.season());
+
+        iterator = iterator.preSeason();
+        System.out.println(iterator.year());
+        System.out.println(iterator.season());
+
+        iterator = iterator.preSeason();
+        System.out.println(iterator.year());
+        System.out.println(iterator.season());
+
+        iterator = iterator.preSeason();
+        System.out.println(iterator.year());
+        System.out.println(iterator.season());
+
+        iterator = iterator.preSeason();
+        System.out.println(iterator.year());
+        System.out.println(iterator.season());
+
+        iterator = iterator.preSeason();
+        System.out.println(iterator.year());
+        System.out.println(iterator.season());
     }
 
 }

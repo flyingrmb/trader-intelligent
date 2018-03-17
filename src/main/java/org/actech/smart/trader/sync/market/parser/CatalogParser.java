@@ -11,6 +11,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 import org.springframework.beans.EntityUtils;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.util.Assert;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -19,7 +20,7 @@ import java.util.HashSet;
  * Created by paul on 2018/3/12.
  */
 @ConfigurationProperties("trader.sync")
-public abstract class CatalogParser<T extends Signature> extends CacheableParser {
+public abstract class CatalogParser<T extends Signature> extends CacheableParser<Document> {
     private boolean enableStockSchema;
     public void setEnableStockSchema(boolean enableStockSchema) {
         this.enableStockSchema = enableStockSchema;
@@ -40,8 +41,12 @@ public abstract class CatalogParser<T extends Signature> extends CacheableParser
     }
 
     @Override
-    public void parse(Document document, String dateStr) {
-        assert(document != null);
+    public void parse(Document document, Object parameter) {
+        Assert.notNull(document, "document should not be null.");
+        Assert.notNull(parameter, "parameter should not be null.");
+        Assert.isTrue(parameter instanceof String, "parameter should be a string.");
+
+        String dateStr = (String)parameter;
 
         Collection<T> shouldSave = new HashSet<T>();
 

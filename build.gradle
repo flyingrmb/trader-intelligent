@@ -27,6 +27,8 @@ dependencies {
 
     // jsoup HTML service library @ https://jsoup.org/
     compile 'org.jsoup:jsoup:1.11.2'
+    // https://mvnrepository.com/artifact/net.sourceforge.htmlunit/htmlunit
+    compile group: 'net.sourceforge.htmlunit', name: 'htmlunit', version: '2.29'
 
     // https://mvnrepository.com/artifact/com.cedarsoftware/java-util
     compile group: 'com.cedarsoftware', name: 'java-util', version: '1.34.0'

@@ -15,7 +15,7 @@ import java.util.Optional;
 /**
  * Created by paul on 2018/3/12.
  */
-public abstract class StockClassificationHtmlParser extends CacheableParser {
+public abstract class StockClassificationHtmlParser extends CacheableParser<Document> {
     @Autowired
     private StockClassificationRepository repository;
 
@@ -28,7 +28,7 @@ public abstract class StockClassificationHtmlParser extends CacheableParser {
     }
 
     @Override
-    public void parse(Document document, String dateStr) {
+    public void parse(Document document, Object dateStr) {
         Collection<StockClassification> shouldSave = new HashSet<StockClassification>();
 
         Collection<StockClassification> classifications = resolver.resolve(document);

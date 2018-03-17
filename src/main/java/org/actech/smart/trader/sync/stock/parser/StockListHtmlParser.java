@@ -2,7 +2,7 @@ package org.actech.smart.trader.sync.stock.parser;
 
 import org.actech.smart.trader.core.parser.CacheableParser;
 import org.actech.smart.trader.sync.market.entity.StockClassification;
-import org.actech.smart.trader.core.net.DocumentCache;
+import org.actech.smart.trader.core.net.NetworkResourceCache;
 import org.actech.smart.trader.sync.stock.entity.StockFundTrack;
 import org.actech.smart.trader.sync.stock.repository.StockFundTrackRepository;
 import org.actech.smart.trader.sync.stock.resolver.StockDetailHtmlResolver;
@@ -20,7 +20,7 @@ import java.util.Collection;
  * Created by paul on 2018/3/15.
  */
 @Service
-public class StockListHtmlParser extends CacheableParser {
+public class StockListHtmlParser extends CacheableParser<Document> {
     @Autowired
     private StockListHtmlResolver resolver;
 
@@ -31,7 +31,7 @@ public class StockListHtmlParser extends CacheableParser {
     private StockDetailHtmlResolver detailParser;
 
     @Autowired
-    private DocumentCache cache;
+    private NetworkResourceCache cache;
 
     @Override
     public boolean shouldParse(Document document) {
@@ -40,9 +40,12 @@ public class StockListHtmlParser extends CacheableParser {
     }
 
     @Override
-    public void parse(Document document, String dateStr) {
+    public void parse(Document document, Object parameter) {
         Assert.notNull(document, "document should not null.");
-        Assert.notNull(dateStr, "dateStr should not null.");
+        Assert.notNull(parameter, "parameter should not be null.");
+        Assert.isTrue(parameter instanceof String, "parameter should be a string.");
+
+        String dateStr = (String)parameter;
 
         Collection<StockClassification> classifications = resolver.resolve(document);
         classifications.forEach(it -> updateStockTrackPeValue(it, dateStr));
@@ -68,7 +71,7 @@ public class StockListHtmlParser extends CacheableParser {
         Assert.notNull(stockFundTrack, "stockFunTrack should not be null.");
         Assert.notNull(url, "url should not be null.");
 
-        Document document = cache.get(url);
+        Document document = cache.get(url, Document.class);
         Collection<StockFundTrack> collection = detailParser.resolve(document);
         if (collection == null || collection.size() == 0) return ;
 

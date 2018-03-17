@@ -4,6 +4,10 @@ package org.actech.smart.trader.core.util;
  * Created by paul on 2018/3/10.
  */
 public class NumericUtils {
+    public static Double parseDouble(String text) {
+        return parseDouble(text, null);
+    }
+
     public static Double parseDouble(String text, Double def) {
         return parseDouble(text, 1.00, def);
     }
@@ -13,7 +17,7 @@ public class NumericUtils {
         try {
             if (text == null) return def;
 
-            text = text.trim();
+            text = text.trim().replaceAll(",", "").replaceAll(" ", "");
             if (text.endsWith("亿")) {
                 ratio *= 100000000;
                 text = text.substring(0, text.length() - "亿".length());

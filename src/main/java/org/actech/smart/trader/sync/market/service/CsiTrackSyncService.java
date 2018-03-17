@@ -20,7 +20,7 @@ import java.util.Collection;
 @Service
 @Registry
 public class CsiTrackSyncService extends CsindexHtmlStructure {
-    @ServicePoint(code="csi1", name="同步CSI指数数据", example = "service/CSI1")
+    @ServicePoint(code="csi1", name="同步CSI指数数据", example = "service/cis1")
     public String syncCurrentCsiData(String param) {
         DateIterator dateIterator = new DateIterator();
         String dateStr = dateIterator.get();
@@ -36,7 +36,7 @@ public class CsiTrackSyncService extends CsindexHtmlStructure {
         return "SUCCESS";
     }
 
-    @ServicePoint(code="csi2", async=true, name="同步CSI历史指数数据", example = "service/CSI2")
+    @ServicePoint(code="csi2", async=true, name="同步CSI历史指数数据", example = "service/csi2")
     public String syncAllCsiData(String param) {
         DateIterator dateIterator = new DateIterator();
         String dateStr = dateIterator.get();

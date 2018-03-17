@@ -20,7 +20,7 @@ import java.util.Collection;
 @Service
 @Registry
 public class BoardTrackSyncService extends CsindexHtmlStructure {
-    @ServicePoint(code="board1", name="同步最新主板数据", example = "service/B1")
+    @ServicePoint(code="board1", name="同步最新主板数据", example = "service/board1")
     public String syncCurrentBoardData(String param) {
         DateIterator dateIterator = new DateIterator();
         String dateStr = dateIterator.get();
@@ -36,7 +36,7 @@ public class BoardTrackSyncService extends CsindexHtmlStructure {
         return "SUCCESS";
     }
 
-    @ServicePoint(code="board2", async=true, name="同步主板所有历史数据", example = "service/B2")
+    @ServicePoint(code="board2", async=true, name="同步主板所有历史数据", example = "service/board2")
     public String syncAllBoardData(String param) {
         DateIterator dateIterator = new DateIterator();
         String dateStr = dateIterator.get();

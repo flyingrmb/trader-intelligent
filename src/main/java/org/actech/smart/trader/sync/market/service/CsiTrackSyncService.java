@@ -20,9 +20,9 @@ import java.util.Collection;
 @Service
 @Registry
 public class CsiTrackSyncService extends CsindexHtmlStructure {
-    @ServicePoint(code="csi1", name="同步CSI指数数据", example = "service/cis1")
+    @ServicePoint(code="csi1", name="同步CSI指数数据", example = "service/csi1 或者 service/csi1=2017-12-31")
     public String syncCurrentCsiData(String param) {
-        DateIterator dateIterator = new DateIterator();
+        DateIterator dateIterator = new DateIterator(param);
         String dateStr = dateIterator.get();
 
         Collection<UrlIndicator> urlIndicators = createUrlIndicators(dateStr);

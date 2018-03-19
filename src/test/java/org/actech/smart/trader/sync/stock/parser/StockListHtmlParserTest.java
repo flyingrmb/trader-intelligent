@@ -35,12 +35,4 @@ public class StockListHtmlParserTest {
         Document document = Jsoup.parse(resource.getFile(), "GB2312");
         assertTrue(parser.shouldParse(document));
     }
-
-    @Test
-    public void parseStocklist() throws Exception {
-        ResourceLoader resourceLoader = new DefaultResourceLoader();
-        Resource resource = resourceLoader.getResource("classpath:股票代码查询一览表.htm");
-        Document document = Jsoup.parse(resource.getFile(), "GB2312");
-        parser.parse(document, "2018-03-14");
-    }
 }

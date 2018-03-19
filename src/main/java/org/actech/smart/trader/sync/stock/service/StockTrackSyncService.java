@@ -43,9 +43,9 @@ public class StockTrackSyncService {
     @Autowired
     private NetworkResourceCache networkResourceCache;
 
-    @ServicePoint(code="stock1", name="同步股票当日最新基本面信息", example="service/stock1")
+    @ServicePoint(code="stock1", name="同步股票当日最新基本面信息", example="service/stock1 或者 service/stock1=2017-12-31")
     public void syncStockDetailInfo(String param) {
-        DateIterator iterator = new DateIterator();
+        DateIterator iterator = new DateIterator(param);
         detailParser.parse(DETAIL_URL, iterator.get());
     }
 

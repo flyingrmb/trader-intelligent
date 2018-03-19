@@ -20,9 +20,9 @@ import java.util.Collection;
 @Service
 @Registry
 public class CsrcTrackSyncService extends CsindexHtmlStructure {
-    @ServicePoint(code="csrc1", name="同步CSRC指数数据", example = "service/csrc1")
+    @ServicePoint(code="csrc1", name="同步CSRC指数数据", example = "service/csrc1 或者 service/csrc1=2017-12-31")
     public void syncCsrcCurrentData(String param) {
-        DateIterator dateIterator = new DateIterator();
+        DateIterator dateIterator = new DateIterator(param);
         String dateStr = dateIterator.get();
 
         Collection<UrlIndicator> urlIndicators = createUrlIndicators(dateStr);

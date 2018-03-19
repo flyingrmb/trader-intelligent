@@ -20,8 +20,15 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.data.mongodb.MongoDbFactory;
 import org.springframework.data.mongodb.core.SimpleMongoDbFactory;
+import org.springframework.data.repository.CrudRepository;
 
+import javax.annotation.PostConstruct;
+import javax.xml.crypto.Data;
 import java.io.IOException;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 /**
  * Created by paul on 2018/3/10.
@@ -44,5 +51,17 @@ public class UnitTestConfiguration {
         MongoClient mongo = new MongoClient(config.net().getServerAddress().getHostName(),
                 config.net().getPort());
         return mongo;
+    }
+
+    @Bean
+    public DataInitializer dataInitializer() {
+        return new DataInitializer();
+    }
+
+    class DataInitializer {
+        @PostConstruct
+        public void afterPropertiesSet() {
+            System.out.println("Hello world!");
+        }
     }
 }

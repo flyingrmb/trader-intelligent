@@ -50,13 +50,6 @@ public class ServiceRegistryCenterImpl implements ServiceRegistryCenter {
             }
         });
 
-        /*new Thread(new Runnable() {
-            @Override
-            public void run() {
-                ReflectionUtils.invokeMethod(descriptor.getMethod(), descriptor.getBean(), parameter);
-            }
-        }).start();*/
-
         return "Async Executing...";
     }
 

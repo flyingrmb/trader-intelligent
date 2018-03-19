@@ -50,19 +50,4 @@ public class Signature {
 
         return true;
     }
-
-    public void setLyr(Double value) {
-        if (value == DEF_INDEX) value = 1.0;
-        this.lyr = value;
-    }
-
-    public void setTtm(Double value) {
-        if (value == DEF_INDEX) value = 1.0;
-        this.ttm = value;
-    }
-
-    public void setPb(Double value) {
-        if (value == DEF_INDEX) value = 1.0;
-        this.pb = value;
-    }
 }

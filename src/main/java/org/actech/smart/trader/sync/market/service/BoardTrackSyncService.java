@@ -22,7 +22,7 @@ import java.util.Collection;
 public class BoardTrackSyncService extends CsindexHtmlStructure {
     @ServicePoint(code="board1", name="同步最新主板数据", example = "service/board1")
     public String syncCurrentBoardData(String param) {
-        DateIterator dateIterator = new DateIterator();
+        DateIterator dateIterator = new DateIterator(param);
         String dateStr = dateIterator.get();
 
         Collection<UrlIndicator> urlIndicators = createUrlIndicators(dateStr);

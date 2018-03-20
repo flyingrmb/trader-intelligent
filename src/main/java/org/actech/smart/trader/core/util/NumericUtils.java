@@ -4,16 +4,26 @@ package org.actech.smart.trader.core.util;
  * Created by paul on 2018/3/10.
  */
 public class NumericUtils {
+    public static boolean isAnchorValue(Double value) {
+        if (value == null) return false;
+
+        if (value == Double.MIN_VALUE) return true;
+        if (value == Double.MAX_VALUE) return true;
+        if (value == 1.0) return true;
+
+        return false;
+    }
+
     public static Double parseDouble(String text) {
-        return parseDouble(text, null);
+        return parseDouble(text, 1.0);
     }
 
-    public static Double parseDouble(String text, Double def) {
-        return parseDouble(text, 1.00, def);
+    public static Double parseDouble(String text, Double ratio) {
+        return parseDouble(text, ratio, null);
     }
 
 
-    public static Double parseDouble(String text, Double ratio, Double def) {
+    private static Double parseDouble(String text, Double ratio, Double def) {
         try {
             if (text == null) return def;
 

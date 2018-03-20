@@ -32,10 +32,10 @@ public class CsrcStockTrackHtmlResolver extends StockHtmlResolver<StockFundTrack
             stockFundTrack.setCode(tdList.get(1).text().trim());
             stockFundTrack.setName(tdList.get(2).text().trim());
 
-            stockFundTrack.setLyr(parseDouble(tdList.get(7).text().trim(), DEF_INDEX));
-            stockFundTrack.setTtm(parseDouble(tdList.get(8).text().trim(), DEF_INDEX));
-            stockFundTrack.setPb(parseDouble(tdList.get(9).text().trim(), DEF_INDEX));
-            stockFundTrack.setDyr(parseDouble(tdList.get(10).text().trim(), 0.0));
+            stockFundTrack.setLyr(parseDouble(tdList.get(7).text().trim()));
+            stockFundTrack.setTtm(parseDouble(tdList.get(8).text().trim()));
+            stockFundTrack.setPb(parseDouble(tdList.get(9).text().trim()));
+            stockFundTrack.setDyr(parseDouble(tdList.get(10).text().trim()));
 
             result.add(stockFundTrack);
         }

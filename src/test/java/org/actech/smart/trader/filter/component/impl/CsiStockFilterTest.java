@@ -42,12 +42,14 @@ import static org.junit.Assert.*;
 @SpringBootTest(classes = {Application.class, UnitTestConfiguration.class})
 @MockDataInit({@MockData(
         file="classpath:entity/stock_classifications.json",
-        repository= StockClassificationRepository.class,
-        entity=StockClassification.class),
+        repository= StockClassificationRepository.class
+        // entity=StockClassification.class
+        ),
         @MockData(
                 file="classpath:entity/csi_classifications.json",
-                repository= CsiIndustrialClassificationRepository.class,
-                entity=CsiIndustrialClassification.class)})
+                repository= CsiIndustrialClassificationRepository.class
+                // entity=CsiIndustrialClassification.class
+                )})
 @ActiveProfiles("dev")
 public class CsiStockFilterTest {
     @Autowired

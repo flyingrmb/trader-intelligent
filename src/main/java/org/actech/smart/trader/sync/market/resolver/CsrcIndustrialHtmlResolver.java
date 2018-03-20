@@ -39,7 +39,7 @@ public class CsrcIndustrialHtmlResolver extends CatalogHtmlResolver<CsrcIndustri
             classification.setCode(code); // 行业代码
             classification.setName(tdList.get(1).text().trim());
 
-            classification.setIndex(parseDouble(tdList.get(2).text().trim(), DEF_INDEX));
+            classification.setIndex(parseDouble(tdList.get(2).text().trim()));
             classification.setStockUrl(tdList.get(3).getElementsByTag("a").get(0).attr("href"));
 
             result.add(classification);

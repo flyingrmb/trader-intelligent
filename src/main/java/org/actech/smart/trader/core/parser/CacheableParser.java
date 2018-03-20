@@ -1,13 +1,9 @@
 package org.actech.smart.trader.core.parser;
 
-import org.actech.smart.trader.core.trait.Cacheable;
 import org.actech.smart.trader.core.net.NetworkResourceCache;
+import org.actech.smart.trader.core.trait.Cacheable;
 import org.actech.smart.trader.core.util.GenericClassUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import sun.reflect.generics.reflectiveObjects.ParameterizedTypeImpl;
-
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
 
 /**
  * Created by paul on 2018/3/11.

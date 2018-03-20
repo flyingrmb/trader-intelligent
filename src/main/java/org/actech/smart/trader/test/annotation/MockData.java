@@ -1,6 +1,5 @@
 package org.actech.smart.trader.test.annotation;
 
-import org.junit.runner.Runner;
 import org.springframework.data.repository.CrudRepository;
 
 /**
@@ -9,5 +8,5 @@ import org.springframework.data.repository.CrudRepository;
 public @interface MockData {
     String file();
     Class<? extends CrudRepository> repository();
-    Class<?> entity();
+    // Class<?> entity();
 }

@@ -68,7 +68,7 @@ public class BoardHtmlResolver extends CatalogHtmlResolver<BoardClassification> 
             classification.setCode(boardMap.get(name)); // 行业代码
             classification.setName(name);
 
-            classification.setIndex(parseDouble(tdList.get(1).text().trim(), DEF_INDEX));
+            classification.setIndex(parseDouble(tdList.get(1).text().trim()));
             result.add(classification);
         }
 

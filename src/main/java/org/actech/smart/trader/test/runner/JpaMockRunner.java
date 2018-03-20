@@ -1,8 +1,6 @@
 package org.actech.smart.trader.test.runner;
 
-import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.actech.smart.trader.core.util.JacksonUtils;
 import org.actech.smart.trader.test.annotation.MockData;
 import org.actech.smart.trader.test.annotation.MockDataInit;
 import org.apache.commons.logging.Log;
@@ -17,7 +15,6 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 /**
  * Created by paul on 2018/3/18.
@@ -52,16 +49,17 @@ public class JpaMockRunner extends SpringJUnit4ClassRunner {
     private void initMockData(MockData mockData, ObjectMapper mapper, ResourceLoader resourceLoader, ApplicationContext applicationContext) throws IOException {
         String file = mockData.file();
         Class<? extends CrudRepository> repositoryClazz = mockData.repository();
-        Class entityClazz = mockData.entity();
+        // Class entityClazz = mockData.entity();
 
+        // Class entityClazz = GenericClassUtils.getGenericParameterizedType(repositoryClazz, CrudRepository.class, 0);
         if (file == null || file.trim().length() == 0) return ;
 
-        logger.info("load data...,file=" + file + ", repository=" + repositoryClazz + ", entity=" + entityClazz);
+        // logger.info("load data...,file=" + file + ", repository=" + repositoryClazz + ", entity=" + entityClazz);
 
         CrudRepository repository = applicationContext.getBean(repositoryClazz);
-        JavaType javaType = JacksonUtils.getCollectionType(ArrayList.class, entityClazz);
+        // JavaType javaType = JacksonUtils.getCollectionType(ArrayList.class, entityClazz);
 
         Resource resource = resourceLoader.getResource(file);
-        repository.saveAll(mapper.readValue(resource.getFile(), javaType));
+        // repository.saveAll(mapper.readValue(resource.getFile(), javaType));
     }
 }

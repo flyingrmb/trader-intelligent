@@ -32,6 +32,9 @@ public class StockFacet {
             ReflectionUtils.makeAccessible(field);
             Double industryValule = (Double)ReflectionUtils.getField(field, industryClassification);
 
+            if (stockValue == null) return false;
+            if (industryValule == null) return false;
+
             if (it.getRelative() > 0 && stockValue/industryValule > it.getRelative()) {
                 return false;
             }

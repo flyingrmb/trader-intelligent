@@ -32,7 +32,6 @@ public class DailySyncServiceImpl implements DailySyncService {
     @Autowired
     private StockTrackSyncService stockTrackSyncService;
 
-
     @Override
     @ServicePoint(code="sync", name="同步全量当日输入", example = "service/sync")
     public void downloadAndSync(String param) {
@@ -44,7 +43,8 @@ public class DailySyncServiceImpl implements DailySyncService {
         boardTrackSyncService.syncCurrentBoardData(null);
         logger.info("处理当日所有股票基本面数据>>>");
         stockTrackSyncService.syncStockDetailInfo(null);
-        logger.info("");
+        logger.info("处理当日所有股票交易数据>>>");
+        stockTrackSyncService.syncStockTraderSlice(null);
         logger.info("完成所有数据处理！");
     }
 }

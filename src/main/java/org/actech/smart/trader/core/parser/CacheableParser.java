@@ -1,8 +1,8 @@
 package org.actech.smart.trader.core.parser;
 
+import org.actech.smart.common.utils.GenericClassUtils;
 import org.actech.smart.trader.core.net.NetworkResourceCache;
 import org.actech.smart.trader.core.trait.Cacheable;
-import org.actech.smart.trader.core.util.GenericClassUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -14,7 +14,7 @@ public abstract class CacheableParser<T> implements HtmlParser, Cacheable {
 
     @Override
     public boolean shouldParse(String url) {
-        Class<T> entityClass = (Class<T>)GenericClassUtils.getGenericParameterizedType(getClass(), CacheableParser.class, 0);
+        Class<T> entityClass = (Class<T>) GenericClassUtils.getGenericParameterizedType(getClass(), CacheableParser.class, 0);
         return shouldParse(cache.get(url, entityClass));
     }
 

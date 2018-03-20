@@ -2,12 +2,12 @@ package org.actech.smart.trader.filter.component.impl;
 
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.actech.smart.common.utils.JacksonUtils;
 import org.actech.smart.test.annotation.MockData;
 import org.actech.smart.test.annotation.MockDataInit;
 import org.actech.smart.test.runner.JpaMockRunner;
 import org.actech.smart.trader.Application;
 import org.actech.smart.test.configuration.UnitTestConfiguration;
-import org.actech.smart.trader.core.util.JacksonUtils;
 import org.actech.smart.trader.filter.entity.Condition;
 import org.actech.smart.trader.filter.entity.StockFacet;
 import org.actech.smart.trader.sync.market.entity.StockClassification;

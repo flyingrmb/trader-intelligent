@@ -49,6 +49,16 @@ public class StockTrackSyncService {
         detailParser.parse(DETAIL_URL, iterator.get());
     }
 
+    @ServicePoint(code="stock2", name="同步股票当日最新交易信息", example="service/stock2 或者 service/stock1=2017-12-31")
+    public void syncStockTraderSlice(String param) {
+        logger.info("开始处理当日股票交易数据：" + param);
+
+        SeasonIterator iterator = new SeasonIterator(param);
+        repository.findAll().forEach(classification -> syncStockTraderInfo(classification, iterator));
+
+        logger.info("完成股票初日交易数据处理。");
+    }
+
     @ServicePoint(code="stock3", async=true, name="同步股票历史交易信息", example =
             {"service/stock3",
             "service/stock3=2017-12-31"})

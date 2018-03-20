@@ -1,10 +1,9 @@
 package org.actech.smart.trader.sync.stock.parser;
 
 import org.actech.smart.trader.Application;
-import org.actech.smart.trader.UnitTestConfiguration;
+import org.actech.smart.test.configuration.UnitTestConfiguration;
 import org.actech.smart.trader.sync.stock.entity.StockFundTrack;
 import org.actech.smart.trader.sync.stock.repository.StockFundTrackRepository;
-import org.actech.smart.trader.sync.stock.parser.StockTrackHtmlParser;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.junit.Test;

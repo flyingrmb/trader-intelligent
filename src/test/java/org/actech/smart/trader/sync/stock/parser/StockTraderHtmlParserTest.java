@@ -4,11 +4,8 @@ import com.gargoylesoftware.htmlunit.*;
 import com.gargoylesoftware.htmlunit.html.HTMLParser;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import org.actech.smart.trader.Application;
-import org.actech.smart.trader.UnitTestConfiguration;
+import org.actech.smart.test.configuration.UnitTestConfiguration;
 import org.actech.smart.trader.sync.market.entity.StockClassification;
-import org.actech.smart.trader.sync.market.repository.StockClassificationRepository;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,16 +15,13 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.util.ResourceUtils;
 
 import java.io.IOException;
 import java.net.URL;
-import java.nio.file.Paths;
 
 import static java.nio.file.Files.readAllBytes;
 import static java.nio.file.Paths.get;
 import static org.hamcrest.core.Is.*;
-import static org.hamcrest.core.IsNull.*;
 import static org.junit.Assert.*;
 /**
  * Created by paul on 2018/3/16.

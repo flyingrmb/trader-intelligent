@@ -1,7 +1,7 @@
 package org.actech.smart.trader.sync.parser;
 
 import org.actech.smart.trader.Application;
-import org.actech.smart.trader.UnitTestConfiguration;
+import org.actech.smart.test.configuration.UnitTestConfiguration;
 import org.actech.smart.trader.sync.market.entity.CsrcIndustrialClassification;
 import org.actech.smart.trader.sync.market.parser.csrc.CsrcIndustrialClassificationTtmHtmlParser;
 import org.actech.smart.trader.sync.market.repository.CsrcIndustrialClassificationRepository;
@@ -19,7 +19,6 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.hamcrest.core.Is.is;
-import static org.hamcrest.core.IsNull.notNullValue;
 import static org.junit.Assert.*;
 
 /**

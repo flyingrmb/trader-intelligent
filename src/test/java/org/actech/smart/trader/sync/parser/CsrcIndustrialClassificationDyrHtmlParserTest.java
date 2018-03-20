@@ -1,7 +1,7 @@
 package org.actech.smart.trader.sync.parser;
 
 import org.actech.smart.trader.Application;
-import org.actech.smart.trader.UnitTestConfiguration;
+import org.actech.smart.test.configuration.UnitTestConfiguration;
 import org.actech.smart.trader.sync.market.entity.CsrcIndustrialClassification;
 import org.actech.smart.trader.sync.market.parser.csrc.CsrcIndustrialClassificationDyrHtmlParser;
 import org.actech.smart.trader.sync.market.repository.CsrcIndustrialClassificationRepository;

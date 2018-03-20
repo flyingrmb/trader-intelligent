@@ -1,7 +1,7 @@
 package org.actech.smart.trader.registry.service;
 
+import org.actech.smart.test.configuration.UnitTestConfiguration;
 import org.actech.smart.trader.Application;
-import org.actech.smart.trader.UnitTestConfiguration;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

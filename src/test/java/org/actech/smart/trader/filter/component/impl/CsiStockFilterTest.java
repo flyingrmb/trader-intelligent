@@ -2,18 +2,17 @@ package org.actech.smart.trader.filter.component.impl;
 
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.actech.smart.test.annotation.MockData;
+import org.actech.smart.test.annotation.MockDataInit;
+import org.actech.smart.test.runner.JpaMockRunner;
 import org.actech.smart.trader.Application;
-import org.actech.smart.trader.UnitTestConfiguration;
+import org.actech.smart.test.configuration.UnitTestConfiguration;
 import org.actech.smart.trader.core.util.JacksonUtils;
 import org.actech.smart.trader.filter.entity.Condition;
 import org.actech.smart.trader.filter.entity.StockFacet;
-import org.actech.smart.trader.sync.market.entity.CsiIndustrialClassification;
 import org.actech.smart.trader.sync.market.entity.StockClassification;
 import org.actech.smart.trader.sync.market.repository.CsiIndustrialClassificationRepository;
 import org.actech.smart.trader.sync.market.repository.StockClassificationRepository;
-import org.actech.smart.trader.test.annotation.MockData;
-import org.actech.smart.trader.test.annotation.MockDataInit;
-import org.actech.smart.trader.test.runner.JpaMockRunner;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,18 +21,14 @@ import org.springframework.core.io.DefaultResourceLoader;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.ContextHierarchy;
-import org.springframework.test.context.junit4.SpringRunner;
 
-import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
 
 /**
  * Created by paul on 2018/3/18.

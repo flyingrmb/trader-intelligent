@@ -1,7 +1,7 @@
 package org.actech.smart.trader.mongo;
 
+import org.actech.smart.test.configuration.UnitTestConfiguration;
 import org.actech.smart.trader.Application;
-import org.actech.smart.trader.UnitTestConfiguration;
 import org.actech.smart.trader.mongo.entity.Person;
 import org.actech.smart.trader.mongo.repositories.PersonRepository;
 import org.junit.Test;

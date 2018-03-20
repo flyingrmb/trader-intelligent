@@ -1,7 +1,7 @@
 package org.actech.smart.trader.sync.repositories;
 
 import org.actech.smart.trader.Application;
-import org.actech.smart.trader.UnitTestConfiguration;
+import org.actech.smart.test.configuration.UnitTestConfiguration;
 import org.actech.smart.trader.sync.market.entity.BoardClassification;
 import org.actech.smart.trader.sync.market.repository.BoardClassificationRepository;
 import org.junit.Ignore;

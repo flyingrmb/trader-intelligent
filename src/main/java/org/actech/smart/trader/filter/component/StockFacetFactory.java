@@ -8,5 +8,5 @@ import java.util.List;
  * Created by paul on 2018/3/18.
  */
 public interface StockFacetFactory {
-    List<StockFacet> createStockFacet();
+    List<StockFacet> createStockFacet(String type);
 }

@@ -9,5 +9,5 @@ import java.util.List;
  * Created by paul on 2018/3/18.
  */
 public interface StockFilter {
-    List<StockFacet> filter(List<Condition> conditions);
+    List<StockFacet> filter(String type, List<Condition> conditions);
 }

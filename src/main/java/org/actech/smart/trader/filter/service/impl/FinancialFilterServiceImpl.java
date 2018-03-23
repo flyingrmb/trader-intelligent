@@ -1,27 +1,19 @@
 package org.actech.smart.trader.filter.service.impl;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.actech.smart.trader.core.util.NumericUtils;
-import org.actech.smart.trader.filter.component.impl.CsiStockFilter;
-import org.actech.smart.trader.filter.component.impl.CsrcStockFilter;
+import org.actech.smart.trader.filter.component.impl.StockFilterImpl;
 import org.actech.smart.trader.filter.entity.Condition;
 import org.actech.smart.trader.filter.entity.StockFacet;
 import org.actech.smart.trader.filter.service.FinancialFilterService;
 import org.actech.smart.trader.registry.annotation.Registry;
 import org.actech.smart.trader.registry.annotation.ServicePoint;
-import org.actech.smart.trader.sync.market.entity.StockClassification;
-import org.actech.smart.trader.sync.market.repository.StockClassificationRepository;
-import org.actech.smart.trader.sync.stock.entity.StockFundTrack;
-import org.actech.smart.trader.sync.stock.repository.StockFundTrackRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import java.io.IOException;
-import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 
 /**
@@ -31,9 +23,7 @@ import java.util.List;
 @Registry
 public class FinancialFilterServiceImpl implements FinancialFilterService {
     @Autowired
-    private CsiStockFilter csiStockFilter;
-    @Autowired
-    private CsrcStockFilter csrcStockFilter;
+    private StockFilterImpl stockFilterImpl;
 
     @Override
     @ServicePoint(code="filter0", name="根据市场平均值过滤股票",
@@ -54,11 +44,7 @@ public class FinancialFilterServiceImpl implements FinancialFilterService {
 
         List<StockFacet> result = new ArrayList<StockFacet>();
 
-        if ("csi".equals(type))
-            result = csiStockFilter.filter(filters);
-
-        if ("csrc".equals(type))
-            result = csrcStockFilter.filter(filters);
+        result = stockFilterImpl.filter(type, filters);
 
         return serialize(result);
     }

@@ -7,5 +7,6 @@ import org.actech.smart.trader.core.repository.TrackRepository;
  * Created by paul on 2018/3/10.
  */
 public interface CsrcIndustrialClassificationRepository extends TrackRepository<CsrcIndustrialClassification> {
+    CsrcIndustrialClassification findFirstByCodeOrderByReleaseDesc(String code);
     CsrcIndustrialClassification findByReleaseAndCode(String release, String code);
 }

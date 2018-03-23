@@ -46,15 +46,15 @@ import static org.junit.Assert.assertThat;
                 // entity=CsiIndustrialClassification.class
                 )})
 @ActiveProfiles("dev")
-public class CsiStockFilterTest {
+public class StockFilterImplTest {
     @Autowired
-    private CsiStockFilter filter;
+    private StockFilterImpl filter;
 
     @Test
     public void filterStockIfNoCondtions() {
         List<Condition> conditions = new ArrayList<Condition>();
 
-        List<StockFacet> result = filter.filter(conditions);
+        List<StockFacet> result = filter.filter("csi", conditions);
         assertThat(result.size(), is(0));
     }
 
@@ -64,7 +64,7 @@ public class CsiStockFilterTest {
         Condition condition = new Condition("lyr", 0.8);
         conditions.add(condition);
 
-        List<StockFacet> result = filter.filter(conditions);
+        List<StockFacet> result = filter.filter("csi", conditions);
     }
 
     @Test
